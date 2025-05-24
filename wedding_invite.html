@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kate & Cam's Wedding</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #fce4ec, #f3e5f5);
+      color: #333;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #d81b60;
+    }
+    label, p {
+      margin-top: 10px;
+      display: block;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #d81b60;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #ad1457;
+    }
+  </style>
+</head>
+<body>
+  <h1>Kate & Cam's Wedding</h1>
+  <p><strong>When:</strong> 20 February 2026</p>
+  <p><strong>Dress Code:</strong> Fun & comfy! Wear sneakers and pink if you can. Think Elvis Nudie Suit meets tattoo parlour vibes.</p>
+
+  <h2>Schedule</h2>
+  <ul>
+    <li><strong>Pre-Lunch (Optional):</strong> 12.00pm–2.30pm at <a href="https://www.stompingground.beer" target="_blank">Stomping Ground Brewing Co</a></li>
+    <li><strong>Ceremony + Reception Part 1:</strong> 2.45pm–5.00pm at <a href="https://thealtarelectric.com.au" target="_blank">The Altar Electric</a></li>
+    <li><strong>Reception Part 2:</strong> 5.00pm–8.00pm at <a href="https://www.lulietavern.com" target="_blank">Lulie Tavern Rooftop</a></li>
+    <li><strong>Reception Part 3 (Optional):</strong> 8.20pm–11.00pm at <a href="https://www.benjys.com.au" target="_blank">Benjys Karaoke Bar</a></li>
+    <li><strong>Recovery (Optional - Kids welcome!):</strong> 2.00pm onwards on 21 Feb at <a href="https://melbournebowlingclub.com" target="_blank">Melbourne Bowling Club</a></li>
+  </ul>
+
+  <h2>RSVP</h2>
+  <form name="submit-to-google-sheet">
+    <label for="name">Name(s):</label>
+    <input type="text" name="Name" required />
+
+    <label>Pre-Lunch (Optional):</label>
+    <select name="Pre-Lunch">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
+    <label>Ceremony + Reception Part 1:</label>
+    <select name="Ceremony">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
+    <label>Reception Part 2:</label>
+    <select name="Reception2">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
+    <label>Reception Part 3 (Optional):</label>
+    <select name="Reception3">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+
+    <label>Recovery (Optional – Kids welcome!):</label>
+    <select name="Recovery">
+      <option>Yes</option>
+      <option>Yes (plus kids)</option>
+      <option>No</option>
+    </select>
+
+    <label>Dietaries:</label>
+    <textarea name="Dietaries"></textarea>
+
+    <button type="submit">Submit RSVP</button>
+  </form>
+
+  <h2>No Gifts Please</h2>
+  <p>We’re tying the knot and throwing a bash,<br>
+     But please don’t bring us a gift or cash.<br>
+     Just bring your love, your cheer, your groove,<br>
+     And help us make this party move!</p>
+
+  <script>
+    const form = document.forms['submit-to-google-sheet'];
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => alert('RSVP submitted!'))
+      .catch(error => alert('Error submitting RSVP'));
+    });
+  </script>
+</body>
+</html>
